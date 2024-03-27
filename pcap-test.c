@@ -68,12 +68,12 @@ int main(int argc, char* argv[]) {
 		if(ntohs(ethernet->ether_type) != ETHERTYPE_IP) continue;
 
 		/* Get IP hdr */
-        struct libnet_ipv4_hdr *ipv4 = (struct libnet_ipv4_hdr *) (packet + sizeof(*ethernet));
+		struct libnet_ipv4_hdr *ipv4 = (struct libnet_ipv4_hdr *) (packet + sizeof(*ethernet));
 		/* Check Protocol */
 		if(ipv4->ip_p != IPPROTO_TCP) continue;
 
 		/* Get TCP hdr */
-        struct libnet_tcp_hdr *tcp = (struct libnet_tcp_hdr *) (packet + sizeof(*ethernet) + sizeof(*ipv4));
+		struct libnet_tcp_hdr *tcp = (struct libnet_tcp_hdr *) (packet + sizeof(*ethernet) + sizeof(*ipv4));
 
 		/* Get Data */
 		uint8_t *data = (uint8_t*)(packet + sizeof(*ethernet) + sizeof(*ipv4) + sizeof(*tcp));
